@@ -20,7 +20,7 @@ def test_register(client, app):
 
 
 # tells Pytest to run the same test function with different arguments.
-@pytest.mark.parameterize(('username', 'password', 'message'), (
+@pytest.mark.parametrize(('username', 'password', 'message'), (
     ('', '', b'Username is required.'),
     ('a', '', b'Password is required.'),
     ('test', 'test', b'already registered'),

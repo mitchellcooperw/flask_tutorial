@@ -36,7 +36,7 @@ def test_author_required(app, client, auth):
     auth.login()
     # current user can't modify other user's post
     assert client.post('/1/update').status_code == 403
-    assert client.post('//1/delete').status_code == 403
+    assert client.post('/1/delete').status_code == 403
     # current user doesn't see edit link
     assert b'href="/1/update"' not in client.get('/').data
 
@@ -67,7 +67,7 @@ def test_update(client, auth, app):
 
     with app.app_context():
         db = get_db()
-        db.execute('SELECT * FROM post WHERE id = 1').fetchone()
+        post = db.execute('SELECT * FROM post WHERE id = 1').fetchone()
         assert post['title'] == 'updated'
 
 @pytest.mark.parametrize('path', (
