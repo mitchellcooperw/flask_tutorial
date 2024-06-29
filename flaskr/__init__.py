@@ -8,6 +8,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.config.from_mapping(
         SECRET_KEY='dev',
+        # python -c 'import secrets; print(secrets.token_hex())' to create a random key
         DATABASE=os.path.join(app.instance_path, 'flaskr.sqlite'),
     )
 
